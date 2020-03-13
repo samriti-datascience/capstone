@@ -1,0 +1,106 @@
+GIT HUB REPOSITORY SET UP AND PUSHING THE CODE
+
+A. SIGN UP GITHUB REPOSITORY
+B. INSTALL COMMAND LINE TOOLS
+
+STEP1: AUTHENTICATE YOUR MACHINE
+
+a. Open Terminal
+
+ssh-keygen -t rsa -b 4096 -C "<your email address>"
+
+This will generate a new SSH key.
+
+b. Next, you will be prompted to enter a directory to save the key.
+I simply press Enter to accept the default location, which is a .ssh folder in the home directory. 
+In ther words, you will be able to locate the key in “~/.ssh/id_rsa”.
+
+c.Choose paraphrase -sam
+
+d. Navigate to the ssh directory
+cd ~/.ssh
+ls
+
+you should find “id_rsa” and “id_rsa.pub” in the list of contents, 
+where “id_rsa” is the private version of your key and “id_rsa.pub” is the public version of your key
+
+e.Finally, you will need to add the SSH key to the ssh-agent, which is meant to help with the authentication
+ process.
+ To do that, first you need to start the ssh-agent, so run the following in Terminal:
+ eval "$(ssh-agent -s)"
+
+f. Next, check if your .ssh directory contains a file named config. 
+If it does, modify it so that its content is the following:
+Host *
+ AddKeysToAgent yes
+ UseKeychain yes
+ IdentityFile ~/.ssh/id_rsa
+ 
+ g. If your .ssh directory does not contain a file named config, then create one and name it config (with no extension), and paste the above as its content. 
+ And yes, all the lines except the first one are indented.
+ 
+ h. add the key to the agent by running the following in Terminal:
+ ssh-add -K ~/.ssh/id_rsa
+ 
+ STEP 2: Add the Key to Your Github Account
+ 
+ Run this:
+ pbcopy < ~/.ssh/id_rsa.pub
+ 
+ It will copy the public version of your key to the clipboard buffer.
+ 
+ Under public settings,
+click the button to add a new SSH key to your account
+
+Paste the content
+
+STEP 3:Create a Github Repository
+
+a. Create new repository
+b. And make sure to check the option of initializing your repository with a README file, as shown above.
+The description that you added earlier would automatically become part of your README file, 
+as you will see later.
+
+STEP 4: Clone your repository
+Now that you have your repository created, let’s create a local version of it. This is called cloning. 
+To do that, click the green “Clone or download” button and click the copy icon to copy the repository URL to the clipboard buffer. 
+Make sure that you are cloning with SSH and not with HTTPS.
+
+a. Make directory on system
+mkdir ~/Desktop/projects
+
+b.Go to the repository location 
+cd ~/Desktop/projects
+
+c.git clone <repository_URL>
+
+now you will be able to see your repository on system
+
+STEP 5: GIT Code push
+
+a. Go to directory
+cd ~/Desktop/projects/capstone
+
+b. Make a py file on system
+c.Check status of file 
+git status
+d.Updating the remote repository or sync-ing it with the local version consists of three steps:
+Staging the changes.
+Committing them.
+Pushing them to the remote repository.
+
+Staging:
+git add python_code.py
+
+Committing:
+git commit -m <customisedmessage>
+
+Push:
+git push
+
+
+
+
+
+ 
+ 
